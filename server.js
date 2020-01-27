@@ -2,6 +2,7 @@
 // use npm run server because we want nodemon to run the server for us and nodemon automatically makes and reflect changes
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser"); //Body parser extracts the entire body of  an incoming HTTP request and exposes it on req.body
 //Init express
 
 //Brining in the three files
@@ -10,6 +11,10 @@ const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 
 const app = express();
+
+//Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //DB config from keys file
 const db = require("./config/keys").mongoURI;
